@@ -7,16 +7,14 @@ GPTapiModel = gpt35turbo
 
 # Provide the paths to your CSV file
 inputFilePath = "googleforms.csv"
-outputFilePath = "promptGeneration.txt"
+promptFilePath = "promptGeneration.txt"
 
 def count_tokens(input_string):
     tokens = input_string.split()
     return len(tokens)
 
-def promptGenerator(inputFilePath, outputFilePath):
-    concatenated_string = ""
-
-    with open(inputFilePath, "r") as csvfile, open(outputFilePath, 'w', newline='') as outputtxt:
+def promptGenerator(inputFilePath, promptFilePath):
+    with open(inputFilePath, "r") as csvfile, open(promptFilePath, 'w', newline='') as outputtxt:
         reader = csv.reader(csvfile)
         next(reader)  # Skip the header row
 
@@ -44,4 +42,4 @@ def promptGenerator(inputFilePath, outputFilePath):
           print( row[1] + ": ",currToken," tokens or $",cost)
 
 # Call the function to actually create outputfile
-result = promptGenerator(inputFilePath,outputFilePath)
+result = promptGenerator(inputFilePath,promptFilePath)
